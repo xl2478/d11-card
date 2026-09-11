@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D11作战地图 · 美护清AI经营四势与策略直达指南</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============ CSS Variables ============ */
+:root{
+  --blue-deep:#1F3AC3;--blue:#3B5BDB;--purple:#5A2CFF;--cyan:#10DBE5;
+  --pink:#E84D6F;--magenta:#E1485F;--orange:#F7714D;--navy:#1F2A44;--bg:#FAFBFF;--bg-2:#f5f6fa;
+  --text:#1a1a2e;--text-2:#4b5563;--text-3:#9ca3af;--text-4:#d1d5db;--text-muted:#6b7280;
+  --card-bg:rgba(255,255,255,.75);--card-border:rgba(62,62,255,.15);
+  --shadow:0 10px 40px rgba(31,58,195,.08);--shadow-hover:0 20px 60px rgba(31,58,195,.12);
+  --radius:16px;--serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;--sans:"Inter","PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+  --fs-title:20px;--fs-card:16px;--fs-body:14px;--fs-product:13px;--fs-tag:12px;--fs-mini:11px;
+  --fw-bold:900;--fw-semi:700;--fw-reg:400;
+}
+
+/* ============ Reset ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ============ Background decorations ============ */
+.orb{position:fixed;border-radius:50%;filter:blur(60px);opacity:.3;z-index:0;pointer-events:none;animation:float 8s ease-in-out infinite}
+.orb-1{width:400px;height:400px;background:var(--purple);top:-100px;right:-100px}
+.orb-2{width:350px;height:350px;background:var(--cyan);bottom:200px;left:-150px;animation-delay:2s}
+.orb-3{width:300px;height:300px;background:var(--blue);top:50%;right:30%;opacity:.15;animation-delay:4s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+
+/* ============ Navigation ============ */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 32px;background:rgba(250,251,255,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(62,62,255,.08)}
+.nav-brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;color:var(--blue-deep)}
+.nav-brand .dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple))}
+.nav-brand span{font-size:13px;color:var(--text-muted);font-weight:400;margin-left:4px}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:14px;color:var(--text-muted);transition:color .3s;font-weight:500}
+.nav-links a.active,.nav-links a:hover{color:var(--blue)}
+
+/* ============ Common ============ */
+.container{max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.sec-head{margin-bottom:48px;max-width:860px}
+.sec-eyebrow{display:inline-block;font-size:.78rem;font-weight:700;color:var(--blue);letter-spacing:.15em;text-transform:uppercase;margin-bottom:16px}
+.sec-title{font-family:"Noto Serif SC",serif;font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:900;line-height:1.15;letter-spacing:-.02em;margin-bottom:18px}
+.sec-title .grad{background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-desc{font-size:var(--fs-body);color:var(--text-2);line-height:1.6}
+section{padding:64px 0;position:relative;z-index:1}
+#forces{padding-top:48px}
+
+/* ============ Card base ============ */
+.card{background:var(--card-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--card-border);border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+
+/* ============ Hero ============ */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:100px 24px 60px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(31,58,195,.06);padding:6px 16px;border-radius:100px;font-size:14px;color:var(--blue-deep);font-weight:500;margin-bottom:20px;border:1px solid rgba(31,58,195,.1)}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.hero h1{font-family:var(--serif);font-size:clamp(2rem,4vw,2.75rem);font-weight:900;line-height:1.2;margin-bottom:12px;background:linear-gradient(135deg,var(--blue-deep),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:18px;color:var(--cyan);font-weight:600;margin-bottom:24px}
+.hero-intro{max-width:860px;font-size:14px;color:var(--text-2);line-height:1.8;margin-bottom:28px;text-align:left}
+.hero-intro b{color:var(--blue-deep);font-weight:600}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:32px}
+.hero-tag{background:#fff;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:500;border:1px solid var(--card-border);box-shadow:0 2px 12px rgba(31,58,195,.05)}
+.hero-tag.t1{color:var(--blue-deep)}.hero-tag.t2{color:var(--purple)}.hero-tag.t3{color:var(--pink)}.hero-tag.t4{color:var(--cyan)}
+
+/* Hero foundation */
+/* Hero flow - four forces to conversion */
+.hero-foundation{display:flex;align-items:center;justify-content:center;margin-bottom:32px}
+.hero-flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
+.hf-step{display:flex;flex-direction:column;align-items:center;gap:2px;padding:14px 20px;border-radius:14px;min-width:80px}
+.hf-name{font-family:var(--serif);font-size:16px;font-weight:700}
+.hf-sub{font-size:11px;opacity:.7}
+.hf-s1{background:linear-gradient(135deg,#DBEAFE,#BFDBFE);color:var(--blue-deep)}
+.hf-s2{background:linear-gradient(135deg,#E8E0FF,#D4C5FF);color:var(--purple)}
+.hf-s3{background:linear-gradient(135deg,#CFF5F9,#A5E8F0);color:var(--cyan)}
+.hf-s4{background:linear-gradient(135deg,#FFE0E6,#FFC6D0);color:var(--magenta)}
+.hf-s5{background:linear-gradient(135deg,rgba(31,58,195,.08),rgba(90,44,255,.06),rgba(225,72,95,.06));color:var(--blue-deep);font-weight:800}
+.hf-arrow{font-size:20px;color:var(--text-3);font-weight:300}
+.hf-plus{font-size:18px;color:var(--text-3);font-weight:300}
+.hf-pair{display:flex;align-items:center;gap:10px;border:2px dashed var(--cyan);border-radius:16px;padding:4px 6px;position:relative}
+.hf-pair::before{content:"拉新流转";position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:600;color:var(--cyan);background:#f8f9ff;padding:0 8px;white-space:nowrap}
+
+/* Hero module cards */
+.hero-modules{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;width:100%}
+.hero-mod-card{padding:24px 16px;text-align:center}
+.hero-mod-card .num{font-family:var(--serif);font-size:28px;font-weight:700;margin-bottom:4px}
+.hero-mod-card .num.n1{color:var(--blue)}.hero-mod-card .num.n2{color:var(--purple)}.hero-mod-card .num.n3{color:var(--cyan)}
+.hero-mod-card .title{font-size:15px;font-weight:600;margin-bottom:4px}
+.hero-mod-card .sub{font-size:12px;color:var(--text-muted)}
+
+.hero-cta{margin-top:32px;display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--blue-deep),var(--purple));color:#fff;padding:14px 36px;border-radius:100px;font-size:16px;font-weight:600;cursor:pointer;transition:transform .3s,box-shadow .3s;box-shadow:0 8px 24px rgba(31,58,195,.25)}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(31,58,195,.3)}
+
+/* ============ Section 01: Campaign Rhythm ============ */
+/* KPI Strip */
+.kpi-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
+.kpi-item{background:var(--card-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px 20px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
+.kpi-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.kpi-item::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:4px 4px 0 0}
+.kpi-item.k1::before{background:var(--blue)}
+.kpi-item.k2::before{background:var(--purple)}
+.kpi-item.k3::before{background:var(--magenta)}
+.kpi-phase{font-size:16px;font-weight:700;color:var(--text);margin-bottom:16px}
+.kpi-nums{display:flex;justify-content:center;gap:32px;margin-bottom:16px}
+.kpi-nums .num{font-family:var(--serif)}
+.kpi-nums .num .val{font-size:24px;font-weight:900;line-height:1;display:block}
+.kpi-nums .num .lbl{font-size:11px;color:var(--text-3);margin-top:6px;display:block;font-family:var(--sans)}
+.kpi-nums .num .val-range{font-size:12px;font-weight:600;color:var(--text-3);margin-top:4px;display:block;font-family:var(--sans)}
+.kpi-item.k1 .num .val{color:var(--blue)}
+.kpi-item.k2 .num .val{color:var(--purple)}
+.kpi-item.k3 .num .val{color:var(--magenta)}
+.kpi-ratio{height:10px;border-radius:100px;overflow:hidden;display:flex;margin-bottom:8px;background:var(--bg-2)}
+.kpi-ratio-bar{height:100%}
+.kpi-ratio-bar.brand{background:linear-gradient(90deg,var(--blue-deep),var(--blue))}
+.kpi-ratio-bar.perf{background:linear-gradient(90deg,var(--magenta),var(--orange))}
+.kpi-ratio-vals{font-size:12px;color:var(--text-3);display:flex;justify-content:space-between;padding:0 4px}
+
+/* Timeline SVG */
+.timeline-wrap{margin-bottom:24px;position:relative}
+.timeline-svg{width:100%;height:auto;display:block;overflow:visible}
+.draw-path{stroke-dasharray:2000;stroke-dashoffset:2000;animation:drawPath 2.5s ease forwards}
+@keyframes drawPath{to{stroke-dashoffset:0}}
+
+/* Journey Nodes */
+.journey-container{position:relative;padding:40px 0 20px;min-height:1150px}
+.journey-node{position:absolute;width:350px;min-height:420px;background:var(--card-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);transition:transform .3s,box-shadow .3s}
+.journey-node:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+.journey-node.jn1{left:0%;top:370px}
+.journey-node.jn2{left:33%;top:370px}
+.journey-node.jn3{left:66%;top:370px}
+.journey-node .ph-tag{display:inline-block;font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px;margin-bottom:12px}
+.journey-node .ph-tag.p1{background:rgba(31,58,195,.1);color:var(--blue-deep)}
+.journey-node .ph-tag.p2{background:rgba(90,44,255,.1);color:var(--purple)}
+.journey-node .ph-tag.p3{background:rgba(225,72,95,.1);color:var(--magenta)}
+.journey-node h4{font-family:var(--serif);font-size:var(--fs-card);font-weight:700;margin-bottom:16px;color:var(--text)}
+.journey-node .node-sec{margin-bottom:16px}
+.journey-node .node-sec:last-child{margin-bottom:0}
+.journey-node .node-sec-title{font-size:var(--fs-body);font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px;color:var(--text)}
+.journey-node .node-sec-title .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.node-sec.t-pos .node-sec-title .dot{background:var(--blue)}
+.node-sec.t-crowd .node-sec-title .dot{background:var(--purple)}
+.node-sec.t-prod .node-sec-title .dot{background:var(--magenta)}
+.node-sec.t-policy .node-sec-title .dot{background:var(--orange)}
+.journey-node .node-sec-text{font-size:var(--fs-product);line-height:1.6;color:var(--text-2)}
+.prod-ai-row{display:flex;flex-direction:column;gap:8px}
+.prod-ai-line{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:var(--fs-product)}
+.prod-ai-line .pa-prod{font-size:12px;font-weight:600;color:var(--text);padding:3px 10px;border-radius:6px;background:rgba(31,58,195,.06)}
+.prod-ai-line .pa-x,.prod-ai-line .pa-sep{font-size:10px;color:var(--text-3);font-weight:400}
+.prod-ai-line .pa-ai{font-size:.82rem;font-weight:600;color:var(--purple);padding:3px 10px;border-radius:6px;background:rgba(90,44,255,.1)}
+.ratio-badge{font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px;display:inline-block;margin-top:8px}
+.node-sec.ns-blue{background:rgba(31,58,195,.04);border-radius:8px;padding:10px 12px;margin-bottom:10px}
+.node-sec.ns-purple{background:rgba(90,44,255,.04);border-radius:8px;padding:10px 12px;margin-bottom:10px}
+.node-sec.ns-magenta{background:rgba(225,72,95,.04);border-radius:8px;padding:10px 12px;margin-bottom:10px}
+.node-sec.ns-orange{background:rgba(247,113,77,.04);border-radius:8px;padding:10px 12px;margin-bottom:0}
+.concept-card{max-width:100%;width:100%;margin:0 auto 32px;border-radius:20px;box-shadow:var(--shadow)}
+
+/* ============ Four Forces (Section 02) ============ */
+.forces-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:40px}
+.force-card{padding:28px 20px;text-align:center;position:relative}
+.force-card .force-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:24px}
+.force-card.f1 .force-icon{background:linear-gradient(135deg,#E8E0FF,#D4C5FF);color:var(--purple)}
+.force-card.f2 .force-icon{background:linear-gradient(135deg,#DBEAFE,#BFDBFE);color:var(--blue)}
+.force-card.f3 .force-icon{background:linear-gradient(135deg,#CFF5F9,#A5E8F0);color:var(--cyan)}
+.force-card.f4 .force-icon{background:linear-gradient(135deg,#FFE0E6,#FFC6D0);color:var(--pink)}
+.force-card .force-name{font-family:var(--serif);font-size:22px;font-weight:700;margin-bottom:4px}
+.force-card .force-desc{font-size:15px;color:var(--text-muted);line-height:1.5;margin-bottom:12px}
+.force-card .force-metric{font-size:14px;padding:6px 10px;border-radius:8px;display:inline-block}
+.force-card.f1 .force-metric{background:rgba(90,44,255,.08);color:var(--purple)}
+.force-card.f2 .force-metric{background:rgba(31,58,195,.08);color:var(--blue)}
+.force-card.f3 .force-metric{background:rgba(16,219,229,.1);color:var(--cyan)}
+.force-card.f4 .force-metric{background:rgba(232,77,111,.08);color:var(--pink)}
+
+.force-arrow{text-align:center;font-size:20px;color:var(--text-muted);margin:-20px 0 20px;letter-spacing:4px}
+
+/* Strategy direct-reach matrix */
+.matrix-wrap{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:40px;overflow-x:auto}
+.matrix-table{width:100%;border-collapse:collapse;min-width:640px}
+.matrix-table th,.matrix-table td{padding:12px 10px;text-align:center;border:1px solid rgba(62,62,255,.1);font-size:13px}
+.matrix-table th{background:linear-gradient(135deg,var(--blue-deep),var(--purple));color:#fff;font-weight:600;font-size:13px}
+.matrix-table th:first-child{background:transparent;border:none}
+.matrix-table td:first-child{background:rgba(31,58,195,.04);font-weight:600;color:var(--blue-deep);text-align:left;padding-left:14px;white-space:nowrap}
+.matrix-table .step-label{font-weight:700;color:var(--blue-deep)}
+.matrix-table .step-metric{font-size:10px;color:var(--text-muted);display:block;margin-top:2px}
+.matrix-table .cell{line-height:1.5}
+.matrix-table .cell .product{font-weight:600;display:block;margin-bottom:2px}
+.matrix-table .cell .ai{color:var(--purple);font-size:11px}
+
+/* Mind share metrics */
+.mindshare-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
+.ms-card{padding:16px 14px;text-align:center}
+.ms-card .step{font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:6px}
+.ms-card .metrics{font-size:14px;line-height:1.8;color:var(--text)}
+.ms-card .metrics b{color:var(--blue-deep)}
+
+/* Growth paths */
+.growth-paths{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.growth-card{padding:24px}
+.growth-card.g1{border-top:3px solid var(--blue)}
+.growth-card.g2{border-top:3px solid var(--pink)}
+.growth-card .gp-badge{display:inline-block;font-size:12px;padding:4px 12px;border-radius:100px;margin-bottom:12px}
+.growth-card.g1 .gp-badge{background:rgba(31,58,195,.08);color:var(--blue-deep)}
+.growth-card.g2 .gp-badge{background:rgba(232,77,111,.08);color:var(--pink)}
+.growth-card .gp-title{font-size:17px;font-weight:700;margin-bottom:6px}
+.growth-card .gp-desc{font-size:13px;color:var(--text-muted);margin-bottom:16px;line-height:1.6}
+.gp-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.gp-flow .step{background:rgba(31,58,195,.06);padding:6px 12px;border-radius:8px;font-size:12px;font-weight:500}
+.gp-flow .arrow{color:var(--text-muted);font-size:14px}
+.gp-metrics{display:flex;gap:16px}
+.gp-metrics .metric{text-align:center;flex:1}
+.gp-metrics .metric .val{font-family:var(--serif);font-size:22px;font-weight:700}
+.growth-card.g1 .gp-metrics .val{color:var(--blue)}
+.growth-card.g2 .gp-metrics .val{color:var(--pink)}
+.gp-metrics .metric .mlabel{font-size:11px;color:var(--text-muted)}
+
+/* Four Forces Matrix */
+.forces-matrix{display:flex;flex-direction:column;gap:20px;border-radius:20px;overflow:visible;box-shadow:none;position:relative;margin-top:32px;padding:0}
+.force-row{display:flex}
+.force-row-separate{gap:20px}
+.force-row-joined{gap:0;border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(31,58,195,.08);position:relative;border:1px solid rgba(62,62,255,.1)}
+.force-row-joined::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--cyan),var(--magenta));z-index:2}
+.force-row-joined .force-block{border:none;border-radius:0;box-shadow:none}
+.force-block{padding:28px 24px;position:relative;z-index:1;overflow:hidden;flex:1;border-radius:16px;border:1px solid rgba(62,62,255,.1);box-shadow:0 4px 20px rgba(31,58,195,.04)}
+.force-block::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.force-block.fb5{flex:none}
+.force-divider{width:0;border-left:2px dashed rgba(62,62,255,.2);margin:28px 0}
+.fb1{background:linear-gradient(135deg,rgba(31,58,195,.04),rgba(31,58,195,.01))}
+.fb1::before{background:var(--blue-deep)}
+.fb2{background:linear-gradient(135deg,rgba(90,44,255,.04),rgba(90,44,255,.01))}
+.fb2::before{background:var(--purple)}
+.fb3{background:linear-gradient(135deg,rgba(16,219,229,.04),rgba(16,219,229,.01))}
+.fb3::before{background:var(--cyan)}
+.fb4{background:linear-gradient(135deg,rgba(225,72,95,.04),rgba(225,72,95,.01))}
+.fb4::before{background:var(--magenta)}
+.fb5{background:linear-gradient(135deg,rgba(31,58,195,.03),rgba(90,44,255,.03),rgba(225,72,95,.03))}
+.fb5::before{background:linear-gradient(90deg,var(--blue-deep),var(--purple),var(--magenta))}
+.fb-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.fb-icon{width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:16px;font-weight:700;text-align:center;line-height:1.1;flex-shrink:0;white-space:nowrap}
+.fb1 .fb-icon{background:linear-gradient(135deg,#DBEAFE,#BFDBFE);color:var(--blue-deep)}
+.fb2 .fb-icon{background:linear-gradient(135deg,#E8E0FF,#D4C5FF);color:var(--purple)}
+.fb3 .fb-icon{background:linear-gradient(135deg,#CFF5F9,#A5E8F0);color:var(--cyan)}
+.fb4 .fb-icon{background:linear-gradient(135deg,#FFE0E6,#FFC6D0);color:var(--magenta)}
+.fb5 .fb-icon{background:linear-gradient(135deg,#F0E6FF,#FFE0E6);color:var(--blue-deep);width:auto !important;min-width:120px !important;padding:0 20px !important;height:48px !important;border-radius:14px;font-size:15px;white-space:nowrap;display:flex;align-items:center;justify-content:center}
+.fb-title{font-family:var(--serif);font-size:var(--fs-card);font-weight:700;flex:1;min-width:120px}
+.fb-metric{font-size:var(--fs-tag);font-weight:600;color:var(--text-3);background:rgba(62,62,255,.06);padding:4px 12px;border-radius:100px;white-space:nowrap}
+.fb-desc{font-size:13px;color:var(--text-2);line-height:1.6;margin-bottom:12px}
+.fb-content{margin-bottom:12px}
+.fb-content-horizontal{display:flex;flex-wrap:wrap;gap:8px}
+.fb-content-horizontal .fb-dim{flex:1;min-width:180px}
+.fb-dim{font-size:var(--fs-product);line-height:1.8;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,.6);margin-bottom:6px;border:1px solid rgba(62,62,255,.06);display:flex;align-items:center;gap:8px}
+.fb-dim-tag{display:inline-block;width:32px;font-weight:700;font-size:12px;color:var(--blue-deep)}
+.fb-dim .highlight{color:var(--purple);font-weight:700}
+.fb-measures{display:flex;flex-wrap:wrap;gap:6px;padding-top:10px;border-top:1px solid rgba(62,62,255,.06)}
+.fb-ms{font-size:var(--fs-tag);font-weight:600;color:var(--purple);background:rgba(90,44,255,.08);padding:3px 8px;border-radius:6px}
+/* Responsive */
+@media(max-width:900px){
+  .force-row{flex-direction:column !important}
+  .force-divider{width:100% !important;height:0;border-left:none !important;border-top:2px dashed rgba(62,62,255,.2) !important;margin:0 0 20px 0 !important}
+  .fb-content-horizontal{flex-direction:column}
+  .concept-card{margin-bottom:24px}
+  .ug-overview-grid{grid-template-columns:1fr !important}
+  .fb-content{flex-direction:column !important}
+  .fb-content > div:last-child{flex:0 0 auto !important}
+}
+.growth-paths-title{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--blue-deep);margin-top:40px;margin-bottom:8px}
+
+/* Product group titles */
+.ug-group-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--blue-deep);margin:12px 0 4px;padding-left:4px}
+.ug-group-title:first-child{margin-top:0}
+.ug-sub-title{font-size:14px;font-weight:600;color:var(--text-2);margin:10px 0 4px;padding-left:8px;border-left:3px solid var(--text-4)}
+
+/* ============ Product Upgrades (Section 03) ============ */
+.ug-summary{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px}
+.ug-sum-card{padding:16px 20px;display:flex;gap:12px;align-items:flex-start}
+.ug-sum-card .icon{font-size:20px;flex-shrink:0}
+.ug-sum-card .text{font-size:13px;line-height:1.6}
+.ug-sum-card .text b{color:var(--blue-deep)}
+
+.ug-highlights{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+.ug-highlight{padding:14px 18px;border-radius:12px}
+.ug-highlight.h1{background:linear-gradient(135deg,rgba(90,44,255,.08),rgba(31,58,195,.06));border:1px solid rgba(90,44,255,.15)}
+.ug-highlight.h2{background:linear-gradient(135deg,rgba(16,219,229,.08),rgba(31,58,195,.04));border:1px solid rgba(16,219,229,.2)}
+.ug-highlight .uh-title{font-size:14px;font-weight:700;margin-bottom:4px}
+.ug-highlight .uh-desc{font-size:12px;color:var(--text-muted);line-height:1.5}
+
+.ug-groups{display:flex;flex-direction:column;gap:8px}
+.ug-group{padding:14px 18px;display:flex;align-items:center;gap:12px}
+.ug-cat-badge{font-size:11px;padding:3px 10px;border-radius:6px;flex-shrink:0;white-space:nowrap}
+.ug-cat-badge.in{background:rgba(31,58,195,.08);color:var(--blue-deep)}
+.ug-cat-badge.out{background:rgba(16,219,229,.1);color:var(--cyan)}
+.ug-cat-badge.new{background:rgba(232,77,111,.1);color:var(--pink)}
+.ug-cat-badge.ai{background:rgba(90,44,255,.08);color:var(--purple)}
+.ug-item{flex:1;font-size:13px}
+.ug-item .name{font-weight:600;margin-bottom:2px}
+.ug-item .desc{font-size:13px;color:var(--text-muted);line-height:1.5}
+.ug-item .desc b{color:var(--blue-deep)}
+.ug-tag{font-size:10px;padding:2px 8px;border-radius:6px;flex-shrink:0}
+.ug-tag.new{background:var(--pink);color:#fff}
+.ug-tag.ai{background:var(--purple);color:#fff}
+
+/* ============ Must-Do (Section 04) ============ */
+.mustdo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:32px}
+.md-card{padding:24px}
+.md-card .num{font-family:var(--serif);font-size:28px;font-weight:700;color:rgba(31,58,195,.15);margin-bottom:8px}
+.md-card .title{font-size:17px;font-weight:700;margin-bottom:8px;color:var(--blue-deep)}
+.md-card .desc{font-size:14px;color:var(--text-muted);line-height:1.6}
+
+.policy-section{margin-bottom:24px}
+.policy-section h3{font-size:16px;font-weight:700;margin-bottom:12px;color:var(--blue-deep)}
+.policy-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.policy-card{padding:14px 16px}
+.policy-card .pname{font-size:15px;font-weight:600;margin-bottom:4px}
+.policy-card .pdesc{font-size:13px;color:var(--text-muted);line-height:1.5}
+
+/* ============ Summary ============ */
+.summary-section{padding:60px 0;text-align:center}
+.ai-agent-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:40px}
+.agent-card{padding:16px 12px;text-align:center}
+.agent-card .icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:18px}
+.agent-card .aname{font-size:15px;font-weight:600;margin-bottom:2px}
+.agent-card .adesc{font-size:13px;color:var(--text-muted)}
+
+.slogan{font-family:var(--serif);font-size:36px;font-weight:900;background:linear-gradient(135deg,var(--blue-deep),var(--purple),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:20px 0 8px}
+.slogan-en{font-size:14px;color:var(--text-muted);letter-spacing:.1em;margin-bottom:40px}
+
+.footer{text-align:center;padding:32px 24px;border-top:1px solid rgba(62,62,255,.08)}
+.footer .tagline{font-size:16px;color:var(--blue-deep);font-weight:600;margin-bottom:8px}
+.footer .info{font-size:12px;color:var(--text-muted)}
+
+/* ============ Animations ============ */
+.fade-up{opacity:0;transform:translateY(30px);animation:fadeUp .8s ease forwards}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ============ Responsive ============ */
+@media(max-width:900px){
+  .hero h1{font-size:36px}
+  .hero-modules{grid-template-columns:1fr;max-width:400px}
+  .timeline-wrap{display:none}
+  .journey-container{min-height:auto;padding:20px 0}
+  .journey-node{position:relative !important;left:auto !important;top:auto !important;width:100%;margin-bottom:20px}
+  .forces-grid{grid-template-columns:repeat(2,1fr)}
+  .force-step-header{flex-direction:column;align-items:flex-start}
+  .growth-paths{grid-template-columns:1fr}
+  .kpi-strip{grid-template-columns:1fr}
+  .mindshare-bar{grid-template-columns:repeat(2,1fr)}
+  .ug-summary{grid-template-columns:1fr}
+  .ug-highlights{grid-template-columns:1fr}
+  .ug-three-parts{grid-template-columns:1fr !important}
+  .mustdo-grid{grid-template-columns:1fr}
+  .policy-grid{grid-template-columns:1fr}
+  .ai-agent-bar{grid-template-columns:repeat(2,1fr)}
+  .hero-foundation{flex-wrap:wrap}
+}
+@media(max-width:720px){
+  .nav-links{display:none}
+  .hero h1{font-size:28px}
+  .sec-title{font-size:24px}
+  .slogan{font-size:28px}
+  .container{padding:0 16px}
+  section{padding:48px 0}
+}
+</style>
+<!-- ============ 跨浏览器加固 + 移动端响应式（叠加层，不改原样式） ============ -->
+<style>
+/* --- 跨浏览器加固（全宽度） --- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+*{-webkit-tap-highlight-color:transparent}
+/* 动画兜底：无JS/不支持时内容始终可见（不关掉正常淡入动画） */
+.no-io .fade-up{opacity:1;transform:none;animation:none}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+  .fade-up{opacity:1;transform:none}
+  .draw-path{stroke-dashoffset:0 !important}
+}
+/* 强制所有毛玻璃带webkit前缀 */
+.nav,.card,.kpi-item,.journey-node,.concept-card,.force-block{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+
+/* --- 横屏/平板 601~900px：保持2×2四势布局，板块内雷达+文案竖排 --- */
+@media(max-width:900px) and (min-width:601px){
+  .container{padding:0 20px}
+  section{padding:56px 0}
+  #forces{padding-top:44px}
+  .hero{min-height:auto;padding:96px 24px 48px}
+  .hero h1{font-size:clamp(2rem,6vw,2.8rem)}
+  .hero-sub{font-size:18px}
+  .hero-intro{font-size:14px;max-width:100%}
+  .hero-modules{max-width:680px;grid-template-columns:repeat(3,1fr) !important}
+  /* KPI三阶段卡片保持3列并排 */
+  .kpi-strip{grid-template-columns:repeat(3,1fr) !important}
+  /* concept-card 诊断/执行 保持横排 */
+  .cc-split{flex-direction:row !important}
+  #standardRadar svg{max-width:380px !important}
+  /* force-row 保持2列（捕获|追击，拦截|攻防） */
+  .force-row{flex-direction:row !important}
+  .force-row-separate{gap:16px !important}
+  /* 拦截+攻防的虚线分隔恢复竖线（覆盖原版900px的水平分隔） */
+  .force-divider{width:0 !important;height:auto !important;border-left:2px dashed rgba(62,62,255,.2) !important;border-top:none !important;margin:28px 0 !important}
+  /* 但每个板块内雷达+文案竖排（因为半宽空间不够横排） */
+  .fb-content{flex-direction:column !important;gap:12px}
+  .fb-content > div{width:100% !important;flex:none !important}
+  .fb-content svg{max-width:220px !important;margin:0 auto}
+  .force-block{padding:20px 16px}
+  .journey-node{width:100%}
+}
+
+/* --- 手机竖屏 ≤600px：全单列 --- */
+@media(max-width:600px){
+  .container{padding:0 16px}
+  section{padding:48px 0}
+  #forces{padding-top:36px}
+  .hero{min-height:auto;padding:88px 18px 44px}
+  .hero h1{font-size:clamp(1.9rem,7vw,2.4rem)}
+  .hero-sub{font-size:16px}
+  .hero-intro{font-size:14px;max-width:100%}
+  .hero-modules{max-width:100%;grid-template-columns:1fr;gap:12px}
+  .hero-flow{gap:5px}
+  .hf-step{padding:10px 10px;min-width:56px}
+  .hf-name{font-size:13px}
+  /* concept-card 诊断/执行 竖排堆叠 */
+  .cc-split{flex-direction:column !important;gap:20px !important}
+  .cc-split > div{flex:none !important;width:100% !important}
+  #standardRadar svg{max-width:300px !important}
+  .concept-card{border-left-width:4px}
+  /* force-row 单列 */
+  .force-row{flex-direction:column !important}
+  .force-row-separate{gap:16px !important}
+  /* 板块内雷达+文案竖排 */
+  .fb-content{flex-direction:column;gap:14px}
+  .fb-content > div{width:100% !important;flex:none !important}
+  .fb-content svg{max-width:260px !important;margin:0 auto}
+  .forces-matrix{gap:14px}
+  .force-block{padding:22px 18px}
+  .journey-node{width:100%}
+}
+
+/* --- 手机竖屏 ≤480px --- */
+@media(max-width:480px){
+  html{font-size:15px}
+  .container{padding:0 14px}
+  section{padding:40px 0}
+  #forces{padding-top:32px}
+  .nav{padding:10px 14px}
+  .nav-brand{font-size:13px}
+  .hero{padding:84px 16px 40px}
+  .hero h1{font-size:1.9rem}
+  .hero-sub{font-size:15px;margin-bottom:18px}
+  .hero-badge{font-size:12px;padding:5px 12px}
+  .hero-tags{gap:8px}
+  .hero-tag{font-size:12px;padding:6px 12px}
+  .hero-flow{gap:4px}
+  .hf-step{padding:8px 8px;min-width:0;flex:1}
+  .hf-name{font-size:12px}
+  .hf-sub{font-size:9px}
+  .hf-arrow,.hf-plus{font-size:14px}
+  .hf-pair{gap:4px;padding:3px 4px;border-width:1.5px}
+  .hf-pair::before{font-size:8px;top:-8px;padding:0 4px}
+  /* 标题层级收紧 */
+  .sec-title{font-size:clamp(1.4rem,6vw,1.9rem)}
+  .sec-desc{font-size:13px}
+  .sec-eyebrow{font-size:11px}
+  /* KPI */
+  .kpi-nums .num .val{font-size:20px}
+  .kpi-phase{font-size:13px}
+  /* journey 卡片 */
+  .journey-node{padding:18px 16px}
+  .journey-node h4{font-size:15px}
+  .journey-node .node-sec-title{font-size:13px}
+  .journey-node .node-sec-text{font-size:12px}
+  .prod-ai-line{font-size:12px;padding:4px 8px}
+  /* concept-card */
+  .concept-card{border-left-width:4px;border-radius:0 12px 12px 0}
+  .concept-card [style*="padding:24px 28px"],.concept-card [style*="padding:28px 28px"]{padding:18px 16px !important}
+  .cc-split{gap:16px !important}
+  #standardRadar svg{max-width:280px !important}
+  /* force-block */
+  .fb-title{font-size:15px}
+  .fb-icon{width:52px;height:52px;font-size:14px}
+  .fb-metric{font-size:11px}
+  .fb-desc{font-size:12px}
+  .fb-dim{font-size:12px;padding:8px 10px}
+  .fb-content svg{max-width:240px !important}
+  .force-separator div{font-size:14px !important}
+  /* upgrades 列表 */
+  .ug-item{font-size:12px}
+  .ug-group{padding:12px 14px;flex-wrap:wrap}
+  /* mustdo */
+  .md-card .title{font-size:15px}
+  .md-card .desc{font-size:12px}
+  .md-card .num{font-size:24px}
+  .slogan{font-size:1.7rem}
+  .ai-agent-bar{grid-template-columns:1fr 1fr}
+  /* 底部 */
+  .footer .info{font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<!-- Background orbs -->
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- Navigation -->
+<nav class="nav">
+  <a href="#top" class="nav-brand"><span class="dot"></span> D11·作战地图 <span>美护清</span></a>
+  <div class="nav-links">
+    <a href="#rhythm">作战节奏</a>
+    <a href="#forces">AI四势×策略直达</a>
+    <a href="#upgrades">产品升级</a>
+    <a href="#mustdo">双11必做</a>
+  </div>
+</nav>
+
+<!-- ============ Hero ============ -->
+<section class="hero" id="top">
+  <div class="hero-badge"><span class="dot"></span> 阿里妈妈 · 美护清 · 双11作战地图</div>
+  <h1>D11 作战地图</h1>
+  <div class="hero-sub">美护清 AI经营四势与策略直达指南</div>
+  <div class="hero-intro">
+    AI改变消费者、平台、商家三方"对话方式"——消费者表达更散、平台理解更准、广告投放更稳。当下正是AI红利最丰厚的窗口：策略不再需要层层转译，而是直接到场。<b>AI经营四势</b>正是在这一红利中生长的方法论——<b>捕获</b>：定位消费者意图、<b>追击</b>：识别消费者关系、<b>拦截</b>：理解消费者需求、<b>攻防</b>：明确竞争优劣势。四势串成完整消费者经营链路，沿人/货/词/内容四维直达每个营销环节，辅以三阶段作战节奏与淘内品牌广告+淘外UD产品升级落地双11。
+  </div>
+  <div class="hero-tags">
+    <span class="hero-tag t1">蓄水 → 第1波 → 第2波</span>
+    <span class="hero-tag t2">AI经营四势全链路</span>
+    <span class="hero-tag t3">淘内品牌广告 + 淘外UD升级</span>
+    <span class="hero-tag t4">品效联投闭环</span>
+  </div>
+  <div class="hero-foundation">
+    <div class="hero-flow">
+      <div class="hf-step hf-s1"><span class="hf-name">捕获</span><span class="hf-sub">关系捕获</span></div>
+      <div class="hf-arrow">→</div>
+      <div class="hf-step hf-s2"><span class="hf-name">追击</span><span class="hf-sub">促活加深</span></div>
+      <div class="hf-arrow">→</div>
+      <div class="hf-pair">
+        <div class="hf-step hf-s3"><span class="hf-name">拦截</span><span class="hf-sub">新客扩容</span></div>
+        <div class="hf-plus">+</div>
+        <div class="hf-step hf-s4"><span class="hf-name">攻防</span><span class="hf-sub">交锋流转</span></div>
+      </div>
+      <div class="hf-arrow">→</div>
+      <div class="hf-step hf-s5"><span class="hf-name">高效转化</span><span class="hf-sub">策略兑现</span></div>
+    </div>
+  </div>
+  <div class="hero-modules">
+    <div class="card hero-mod-card">
+      <div class="num n1">01</div>
+      <div class="title">三阶段作战节奏</div>
+      <div class="sub">蓄水 · 第1波 · 第2波</div>
+    </div>
+    <div class="card hero-mod-card">
+      <div class="num n2">02</div>
+      <div class="title">AI四势×策略直达</div>
+      <div class="sub">捕获 → 追击 → 拦截 → 攻防</div>
+    </div>
+    <div class="card hero-mod-card">
+      <div class="num n3">03</div>
+      <div class="title">双11产品能力升级</div>
+      <div class="sub">淘内品牌广告 + 淘外UD</div>
+    </div>
+  </div>
+  <a href="#rhythm" class="hero-cta">进入作战地图 ↓</a>
+</section>
+
+<!-- ============ Section 01: Campaign Rhythm ============ -->
+<section id="rhythm">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">01 · CAMPAIGN RHYTHM</div>
+      <h2 class="sec-title">三阶段<span class="grad">作战节奏</span></h2>
+      <p class="sec-desc">双11三阶段节奏——蓄水期广域种草、锁定稀缺资源；第1波爆品拉动、搜索攻防；第2波效率冲刺、双峰复购。每阶段标注特征定位、人群策略、主推产品×AI能力及品效配比。</p>
+    </div>
+
+    <!-- KPI Strip -->
+    <div class="kpi-strip">
+      <div class="kpi-item k1">
+        <div class="kpi-phase">蓄水期</div>
+        <div class="kpi-nums">
+          <div class="num"><span class="val">20%-30%</span><span class="lbl">GMV占比</span></div>
+          <div class="num"><span class="val">60:40</span><span class="lbl">品效比</span></div>
+        </div>
+        <div class="kpi-ratio">
+          <div class="kpi-ratio-bar brand" style="width:60%"></div>
+          <div class="kpi-ratio-bar perf" style="width:40%"></div>
+        </div>
+        <div class="kpi-ratio-vals"><span>品广 60%</span><span>效果 40%</span></div>
+      </div>
+      <div class="kpi-item k2">
+        <div class="kpi-phase">第1波</div>
+        <div class="kpi-nums">
+          <div class="num"><span class="val">42%-55%</span><span class="lbl">GMV占比</span></div>
+          <div class="num"><span class="val">50:50</span><span class="lbl">品效比</span></div>
+        </div>
+        <div class="kpi-ratio">
+          <div class="kpi-ratio-bar brand" style="width:50%"></div>
+          <div class="kpi-ratio-bar perf" style="width:50%"></div>
+        </div>
+        <div class="kpi-ratio-vals"><span>品广 50%</span><span>效果 50%</span></div>
+      </div>
+      <div class="kpi-item k3">
+        <div class="kpi-phase">第2波</div>
+        <div class="kpi-nums">
+          <div class="num"><span class="val">20%-32%</span><span class="lbl">GMV占比</span></div>
+          <div class="num"><span class="val">30:70</span><span class="lbl">品效比</span></div>
+        </div>
+        <div class="kpi-ratio">
+          <div class="kpi-ratio-bar brand" style="width:30%"></div>
+          <div class="kpi-ratio-bar perf" style="width:70%"></div>
+        </div>
+        <div class="kpi-ratio-vals"><span>品广 30%</span><span>效果 70%</span></div>
+      </div>
+    </div>
+
+    <!-- Journey Container with Timeline SVG -->
+    <div class="journey-container">
+      <div class="timeline-wrap">
+        <svg class="timeline-svg" viewBox="0 0 1200 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="waveGrad" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#1F3AC3"/>
+              <stop offset="50%" stop-color="#5A2CFF"/>
+              <stop offset="100%" stop-color="#E1485F"/>
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <!-- Background dashed path -->
+          <path d="M 0 240 C 40 238 80 230 120 195 C 200 170 300 120 400 90 C 500 65 550 60 600 65 C 650 75 700 100 750 140 C 800 175 850 185 900 170 C 950 155 1000 135 1050 125 C 1070 122 1080 120 1100 135 C 1150 160 1180 175 1200 185"
+                stroke="#d1d5db" stroke-width="2" stroke-dasharray="6 4" fill="none"/>
+          <!-- Animated gradient path -->
+          <path class="draw-path" d="M 0 240 C 40 238 80 230 120 195 C 200 170 300 120 400 90 C 500 65 550 60 600 65 C 650 75 700 100 750 140 C 800 175 850 185 900 170 C 950 155 1000 135 1050 125 C 1070 122 1080 120 1100 135 C 1150 160 1180 175 1200 185"
+                stroke="url(#waveGrad)" stroke-width="3" fill="none" filter="url(#glow)"/>
+          <!-- Node 1: 蓄水期 -->
+          <rect x="75" y="105" width="90" height="22" rx="4" fill="white" opacity="0.9"/>
+          <text x="120" y="120" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#1F3AC3">蓄水期</text>
+          <rect x="80" y="235" width="80" height="18" rx="4" fill="white" opacity="0.9"/>
+          <text x="120" y="250" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#9ca3af">9月底-10月中</text>
+          <circle cx="120" cy="195" r="14" fill="#3B5BDB" opacity="0.15">
+            <animate attributeName="r" values="14;18;14" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.15;0.05;0.15" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="120" cy="195" r="5" fill="#3B5BDB"/>
+          <circle cx="120" cy="195" r="2" fill="#fff"/>
+          <!-- Node 2: 第1波 -->
+          <rect x="565" y="0" width="70" height="22" rx="4" fill="white" opacity="0.9"/>
+          <text x="600" y="15" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#5A2CFF">第1波</text>
+          <rect x="560" y="95" width="80" height="18" rx="4" fill="white" opacity="0.9"/>
+          <text x="600" y="110" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#9ca3af">10月中-11月初</text>
+          <circle cx="600" cy="65" r="14" fill="#5A2CFF" opacity="0.15">
+            <animate attributeName="r" values="14;18;14" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.15;0.05;0.15" dur="2s" begin="0.6s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="600" cy="65" r="5" fill="#5A2CFF"/>
+          <circle cx="600" cy="65" r="2" fill="#fff"/>
+          <!-- Node 3: 第2波 -->
+          <rect x="1030" y="60" width="100" height="22" rx="4" fill="white" opacity="0.9"/>
+          <text x="1080" y="75" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" font-weight="700" fill="#E1485F">第2波</text>
+          <rect x="1040" y="155" width="80" height="18" rx="4" fill="white" opacity="0.9"/>
+          <text x="1080" y="170" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#9ca3af">11月初-11月中</text>
+          <circle cx="1080" cy="125" r="14" fill="#E1485F" opacity="0.15">
+            <animate attributeName="r" values="14;18;14" dur="2s" begin="1.2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.15;0.05;0.15" dur="2s" begin="1.2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="1080" cy="125" r="5" fill="#E1485F"/>
+          <circle cx="1080" cy="125" r="2" fill="#fff"/>
+          <!-- Bottom rounded rect: 底层贯穿 -->
+          <rect x="20" y="280" width="1160" height="40" rx="20" fill="#f5f6fa" stroke="#d1d5db" stroke-width="1"/>
+          <text x="600" y="305" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" font-weight="600" fill="#4b5563">底层贯穿 · 达摩盘 AI识人×AI识货 · 万相点睛 · 人群灵眸</text>
+        </svg>
+      </div>
+
+      <!-- Journey Node 1: 蓄水期 -->
+      <div class="journey-node jn1">
+        <span class="ph-tag p1">蓄水期 · 9月底-10月中</span>
+        <h4>人群筑基 · 资源锁定</h4>
+        <div class="node-sec t-pos ns-blue">
+          <div class="node-sec-title"><span class="dot"></span>特征定位</div>
+          <div class="node-sec-text">
+            蓄水期是双11的前置准备窗口。核心任务：<br>
+            <strong>① 锁定早鸟稀缺资源</strong>，享UD品牌返10%和Topshow/Topbrand下单返10%早鸟权益；<br>
+            <strong>② 广域种草</strong>，通过UD站外+淘内品牌广告最大化D/E层人群资产沉淀；<br>
+            <strong>③ 测试新品&趋势款</strong>，验证货品策略。
+          </div>
+        </div>
+        <div class="node-sec t-crowd ns-purple">
+          <div class="node-sec-title"><span class="dot"></span>人群策略</div>
+          <div class="node-sec-text">
+            <strong>底盘</strong>：行业策略人群<br>
+            <strong>叠加</strong>：美护清圈层(敏感肌/抗老/礼遇)<br>
+            <strong>重点</strong>：跨类目潜客·大促易感人群<br>
+            <strong>AI能力</strong>：万相点睛生成定向，人群灵眸实时优化
+          </div>
+        </div>
+        <div class="node-sec ns-magenta">
+          <div class="node-sec-title t-prod"><span class="dot"></span>主推产品 × AI能力 <span class="ratio-badge" style="font-size:11px;color:var(--blue-deep);font-weight:700;margin-left:auto;background:rgba(31,58,195,.08);padding:2px 8px;border-radius:5px">品广主导 60%</span></div>
+          <div class="prod-ai-row">
+            <div class="prod-ai-line"><span class="pa-prod">UD品牌/超级全域通</span><span class="pa-sep">×</span><span class="pa-ai">万相点睛·五大维度人群</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">品牌特秀</span><span class="pa-sep">×</span><span class="pa-ai">万相点睛·人群灵眸解读</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">ShowMAX进店</span><span class="pa-sep">×</span><span class="pa-ai">四大场景确定交付</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">手淘开屏Topshow</span><span class="pa-sep">×</span><span class="pa-ai">微动效·会员运营</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">品牌闪购</span><span class="pa-sep">×</span><span class="pa-ai">AI破框视频</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">AI超级品牌</span><span class="pa-sep">×</span><span class="pa-ai">语脉+AI闪投+全域追投</span></div>
+          </div>
+        </div>
+        <div class="node-sec t-policy ns-orange">
+          <div class="node-sec-title"><span class="dot"></span>政策锚点</div>
+          <div class="node-sec-text">9/15前UD品牌返10%，9/20前Topshow/Topbrand下单返10%</div>
+        </div>
+      </div>
+
+      <!-- Journey Node 2: 第1波 -->
+      <div class="journey-node jn2">
+        <span class="ph-tag p2">第1波爆发 · 10月中-11月初</span>
+        <h4>精准拦截 · 爆品拉动</h4>
+        <div class="node-sec t-pos ns-blue">
+          <div class="node-sec-title"><span class="dot"></span>特征定位</div>
+          <div class="node-sec-text">
+            第1波是双11的爆发窗口。核心任务：<br>
+            <strong>① 新客首购&老客复购</strong>，新品&超单集中爆发；<br>
+            <strong>② DEEPLINK全量焕活</strong>，D/E层人群向P/I层流转；<br>
+            <strong>③ 搜索攻防</strong>，赢搜通拉动搜索+一搜即现拦截+竞争击穿渗透。
+          </div>
+        </div>
+        <div class="node-sec t-crowd ns-purple">
+          <div class="node-sec-title"><span class="dot"></span>人群策略</div>
+          <div class="node-sec-text">
+            <strong>核心</strong>：大促易感人群<br>
+            <strong>叠加</strong>：行业拉新优选·类目行为<br>
+            <strong>攻防</strong>：品牌/竞品人群<br>
+            <strong>匹配</strong>：搜索攻防策略
+          </div>
+        </div>
+        <div class="node-sec ns-magenta">
+          <div class="node-sec-title t-prod"><span class="dot"></span>主推产品 × AI能力 <span class="ratio-badge" style="font-size:11px;color:var(--purple);font-weight:700;margin-left:auto;background:rgba(90,44,255,.08);padding:2px 8px;border-radius:5px">品效并重 50:50</span></div>
+          <div class="prod-ai-row">
+            <div class="prod-ai-line"><span class="pa-prod">特秀白盒</span><span class="pa-sep">×</span><span class="pa-ai">灵眸解读</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">一搜即现</span><span class="pa-sep">×</span><span class="pa-ai">AIT·AI意图词包</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">ShowMAX加购</span><span class="pa-sep">×</span><span class="pa-ai">极速加购·确定交付</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">竞争击穿</span><span class="pa-sep">×</span><span class="pa-ai">万相点睛·竞争策略</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">关键词推广</span><span class="pa-sep">×</span><span class="pa-ai">AI选品·最大化出价</span>
+            <div class="prod-ai-line"><span class="pa-prod">赢搜通</span><span class="pa-sep">×</span><span class="pa-ai">AI激发搜索</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">人群击穿</span><span class="pa-sep">×</span><span class="pa-ai">万相点睛</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Journey Node 3: 第2波 -->
+      <div class="journey-node jn3">
+        <span class="ph-tag p3">第2波爆发 · 11月初-11月中</span>
+        <h4>实时调优 · 效率冲刺</h4>
+        <div class="node-sec t-pos ns-blue">
+          <div class="node-sec-title"><span class="dot"></span>特征定位</div>
+          <div class="node-sec-text">
+            第2波是效率冲刺窗口。核心任务：<br>
+            <strong>① 蓄水期人群全面召回</strong>，双峰复购拉动增量；<br>
+            <strong>② 趋势款&爆款全面爆发</strong>，品效全力冲刺；<br>
+            <strong>③ 效果广告主导</strong>，全站推+AI三引擎+ShowMAX分钟级追击。
+          </div>
+        </div>
+        <div class="node-sec t-crowd ns-purple">
+          <div class="node-sec-title"><span class="dot"></span>人群策略</div>
+          <div class="node-sec-text">
+            <strong>核心</strong>：前序未购·类目行为<br>
+            <strong>叠加</strong>：品牌/竞品人群<br>
+            <strong>补充</strong>：再营销人群<br>
+            <strong>策略</strong>：精准控投产比
+          </div>
+        </div>
+        <div class="node-sec ns-magenta">
+          <div class="node-sec-title t-prod"><span class="dot"></span>主推产品 × AI能力 <span class="ratio-badge" style="font-size:11px;color:var(--magenta);font-weight:700;margin-left:auto;background:rgba(225,72,95,.08);padding:2px 8px;border-radius:5px">效果主导 30:70</span></div>
+          <div class="prod-ai-row">
+            <div class="prod-ai-line"><span class="pa-prod">关键词推广</span><span class="pa-sep">×</span><span class="pa-ai">AI选品·最大化出价</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">人群推广</span><span class="pa-sep">×</span><span class="pa-ai">人群灵眸·高转化信号</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">货品全站推</span><span class="pa-sep">×</span><span class="pa-ai">AI三引擎·多目标</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">ShowMAX追击</span><span class="pa-sep">×</span><span class="pa-ai">分钟级全域拦截</span></div>
+            <div class="prod-ai-line"><span class="pa-prod">AI超级品牌</span><span class="pa-sep">×</span><span class="pa-ai">全域追投·评估体系</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Section 02: AI Four Forces × Strategy Direct-Reach ============ -->
+<section id="forces">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">02 · AI FOUR FORCES × STRATEGY DIRECT-REACH</div>
+      <h2 class="sec-title"><span class="grad">AI经营四势 × 策略直达</span></h2>
+    </div>
+    <div class="concept-card" style="margin-bottom:32px;border-left:6px dashed rgba(90,44,255,.35);border-radius:0 16px 16px 0;position:relative;padding-left:0">
+    <!-- Before 框 -->
+    <div style="border-bottom:1px solid rgba(62,62,255,.08);padding:24px 28px 20px 24px;background:linear-gradient(135deg,rgba(243,244,246,.6),rgba(229,231,235,.4));border-radius:0 16px 0 0">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+        <span style="font-size:16px;font-weight:700;color:#4b5563;letter-spacing:.05em">过去</span>
+        <span style="font-size:14px;color:#9ca3af;font-style:italic">层层损耗</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:14px;color:#9ca3af">
+        <span style="padding:6px 14px;background:rgba(255,255,255,.5);border-radius:8px;opacity:.85">经营目标</span><span style="opacity:.3;font-size:14px">→</span>
+        <span style="padding:6px 14px;background:rgba(255,255,255,.4);border-radius:8px;opacity:.7">商业化目标</span><span style="opacity:.3;font-size:14px">→</span>
+        <span style="padding:6px 14px;background:rgba(255,255,255,.25);border-radius:8px;opacity:.55">核心策略</span><span style="opacity:.3;font-size:14px">→</span>
+        <span style="padding:6px 14px;background:rgba(255,255,255,.15);border-radius:8px;opacity:.4">人群标签</span><span style="opacity:.3;font-size:14px">→</span>
+        <span style="padding:6px 14px;background:rgba(255,255,255,.08);border-radius:8px;opacity:.3">圈人中转</span>
+      </div>
+    </div>
+    <!-- After 框 -->
+    <div style="padding:28px 28px 24px 24px;background:linear-gradient(135deg,rgba(90,44,255,.04),rgba(31,58,195,.02));border-radius:0 0 16px 0">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+        <span style="font-size:18px;font-weight:700;color:var(--purple);background:rgba(90,44,255,.12);padding:5px 18px;border-radius:100px">现在</span>
+        <span style="font-size:16px;color:var(--purple);font-weight:600">AI经营四势 · 策略直达</span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;font-size:16px;margin-bottom:20px">
+        <span style="padding:8px 16px;background:rgba(31,58,195,.08);color:var(--blue-deep);border-radius:10px;font-weight:700">捕获</span>
+        <span style="color:var(--text-3);font-size:18px">→</span>
+        <span style="padding:8px 16px;background:rgba(90,44,255,.08);color:var(--purple);border-radius:10px;font-weight:700">追击</span>
+        <span style="color:var(--text-3);font-size:18px">→</span>
+        <span style="padding:8px 16px;background:rgba(16,219,229,.1);color:var(--cyan);border-radius:10px;font-weight:700">拦截</span>
+        <span style="color:var(--text-3);font-size:16px">+</span>
+        <span style="padding:8px 16px;background:rgba(225,72,95,.08);color:var(--magenta);border-radius:10px;font-weight:700">攻防</span>
+        <span style="color:var(--text-3);font-size:18px">→</span>
+        <span style="padding:8px 16px;background:linear-gradient(135deg,rgba(31,58,195,.08),rgba(225,72,95,.06));color:var(--blue-deep);border-radius:10px;font-weight:700">高效转化</span>
+      </div>
+      <!-- 左右分栏：诊断/执行横向对齐 -->
+      <div class="cc-split" style="display:flex;gap:24px;align-items:stretch;border-top:1px dashed rgba(62,62,255,.1);padding-top:20px">
+        <!-- 左：诊断（雷达图） -->
+        <div style="flex:1.2;text-align:center;display:flex;flex-direction:column">
+          <div style="font-size:16px;font-weight:700;color:var(--text-2);margin-bottom:10px">诊断</div>
+          <div id="standardRadar" style="display:flex;justify-content:center;flex:1"></div>
+          
+        </div>
+        <!-- 右：执行（扩写内容） -->
+        <div style="flex:0 0 44%;display:flex;flex-direction:column">
+          <div style="font-size:16px;font-weight:700;color:var(--text-2);margin-bottom:10px">执行</div>
+          <div style="font-size:14px;color:var(--text-2);line-height:2.2">
+            <div style="margin-bottom:12px;padding:10px 14px;background:rgba(31,58,195,.03);border-radius:10px;border-left:3px solid rgba(31,58,195,.15)">
+              <span style="font-weight:700;color:var(--blue-deep);font-size:16px">捕获</span>
+              <div style="margin-top:4px">定位消费者意图，进行关系捕获</div>
+            </div>
+            <div style="margin-bottom:12px;padding:10px 14px;background:rgba(90,44,255,.03);border-radius:10px;border-left:3px solid rgba(90,44,255,.15)">
+              <span style="font-weight:700;color:var(--purple);font-size:16px">追击</span>
+              <div style="margin-top:4px">识别消费者关系，实时追击加深</div>
+            </div>
+            <div style="margin-bottom:12px;padding:10px 14px;background:rgba(16,219,229,.03);border-radius:10px;border-left:3px solid rgba(16,219,229,.2)">
+              <span style="font-weight:700;color:var(--cyan);font-size:16px">拦截</span>
+              <div style="margin-top:4px">理解消费者需求，扩容品牌新客</div>
+            </div>
+            <div style="margin-bottom:12px;padding:10px 14px;background:rgba(225,72,95,.03);border-radius:10px;border-left:3px solid rgba(225,72,95,.15)">
+              <span style="font-weight:700;color:var(--magenta);font-size:16px">攻防</span>
+              <div style="margin-top:4px">明确竞争优劣势，促进攻防流转</div>
+            </div>
+            <div style="padding:10px 14px;background:linear-gradient(135deg,rgba(31,58,195,.03),rgba(225,72,95,.03));border-radius:10px;border-left:3px solid rgba(90,44,255,.2)">
+              <span style="font-weight:700;color:var(--blue-deep);font-size:16px">高效转化</span>
+              <div style="margin-top:4px">心智资产兑现成交，最大化单位预算产出，全站流量转化与多目标优化</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 时间轴箭头：绝对定位在concept-card左下角，紧贴border-left底部 -->
+  <style>.concept-card::after{content:'';position:absolute;bottom:-10px;left:-10px;width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:14px solid rgba(90,44,255,.4);z-index:10}</style>
+
+    <div class="forces-matrix">
+      <svg class="force-flow-bg" viewBox="0 0 400 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;right:0;bottom:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.25">
+        <defs>
+          <linearGradient id="flowBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1F3AC3"/><stop offset="50%" stop-color="#5A2CFF"/><stop offset="100%" stop-color="#E1485F"/></linearGradient>
+          <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#E1485F"/></marker>
+        </defs>
+        <path d="M 100 10 C 350 50 350 250 200 350 C 100 420 150 470 200 490" stroke="url(#flowBg)" stroke-width="2.5" stroke-dasharray="6 4" fill="none" marker-end="url(#arrowhead)"/>
+        <circle cx="100" cy="10" r="4" fill="#1F3AC3" opacity=".5"/>
+        <circle cx="200" cy="490" r="4" fill="#E1485F" opacity=".5"/>
+      </svg>
+      <!-- 第一行：捕获和追击（独立框，有间隔） -->
+      <div class="force-row force-row-separate">
+        <div class="force-block fb1">
+          <div class="fb-header">
+            <div class="fb-icon">捕获</div>
+            <div class="fb-title">捕获 - 关系捕获</div>
+            <div class="fb-metric">CPUV · CTR</div>
+          </div>
+          <div class="fb-desc">UD外投精准触达站外潜在消费者，万相点睛生成定向人群扩大A层开口，人群灵眸实时优化触达效率。</div>
+          <div class="fb-content" style="display:flex;gap:16px;align-items:stretch">
+            <div style="flex:1;text-align:center">
+              <div style="font-size:14px;font-weight:700;color:var(--text-3);margin-bottom:8px">诊断</div>
+              <div id="radar-捕获"></div>
+              <div style="font-size:12px;font-weight:600;color:var(--text-3);margin-top:4px">捕获缺失型</div>
+            </div>
+            <div style="flex:1">
+              <div style="font-size:14px;font-weight:700;color:var(--text-3);margin-bottom:8px">执行</div>
+              <div class="fb-dim"><span class="fb-dim-tag">人</span> <span class="highlight">UD外投</span>·万相点睛</div>
+              <div class="fb-dim"><span class="fb-dim-tag">货</span> 手淘开屏</div>
+              <div class="fb-dim"><span class="fb-dim-tag">词</span> 品牌专区AI版</div>
+              <div class="fb-dim"><span class="fb-dim-tag">内容</span> 淘宝种草</div>
+            </div>
+          </div>
+          <div class="fb-measures">
+            <span class="fb-ms">CPUV/TA%</span><span class="fb-ms">品类曝光覆盖</span><span class="fb-ms">意图词PVR</span>
+          </div>
+        </div>
+        <div class="force-block fb2">
+          <div class="fb-header">
+            <div class="fb-icon">追击</div>
+            <div class="fb-title">追击 - 促活加深</div>
+            <div class="fb-metric">回搜率 · A-I转化 · 拉新</div>
+          </div>
+          <div class="fb-desc">ShowMAX分钟级追击回流人群，赢搜通AI激发主动搜索提升品牌词搜索量，品牌特秀首屏渗透品类心智。</div>
+          <div class="fb-content" style="display:flex;gap:16px;align-items:stretch">
+            <div style="flex:1;text-align:center">
+              <div style="font-size:14px;font-weight:700;color:var(--text-3);margin-bottom:8px">诊断</div>
+              <div id="radar-追击"></div>
+              <div style="font-size:12px;font-weight:600;color:var(--text-3);margin-top:4px">追击缺失型</div>
+            </div>
+            <div style="flex:1">
+              <div style="font-size:14px;font-weight:700;color:var(--text-3);margin-bottom:8px">执行</div>
+              <div class="fb-dim"><span class="fb-dim-tag">人</span> <span class="highlight">ShowMAX全域追击</span></div>
+              <div class="fb-dim"><span class="fb-dim-tag">货</span> 赢搜通</div>
+              <div class="fb-dim"><span class="fb-dim-tag">词</span> 新品首席</div>
+              <div class="fb-dim"><span class="fb-dim-tag">内容</span> 营销IP矩阵</div>
+            </div>
+          </div>
+          <div class="fb-measures">
+            <span class="fb-ms">A-I转化率</span><span class="fb-ms">新客拉新率</span><span class="fb-ms">收藏加购率</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第二行：拦截和攻防（同一框内，虚线分隔） -->
+      <div class="force-row force-row-joined">
+        <div class="force-block fb3">
+          <div class="fb-header">
+            <div class="fb-icon">拦截</div>
+            <div class="fb-title">拦截 - 拉新流转</div>
+            <div class="fb-metric">拉新 · I-P转化 · ROI</div>
+          </div>
+          <div class="fb-desc">一搜即现搜后实时拦截高购买意向人群，人群击穿万相点睛AI人群精准拉新定向渗透。</div>
+          <div class="fb-content" style="display:flex;gap:16px;align-items:stretch">
+            <div style="flex:1;text-align:center">
+              <div style="font-size:14px;font-weight:700;color:var(--text-3);margin-bottom:8px">诊断</div>
+              <div id="radar-拦截"></div>
+              <div style="font-size:12px;font-weight:600;color:var(--text-3);margin-top:4px">拦截缺失型</div>
+            </div>
+            <div style="flex:1">
+              <div style="font-size:14px;font-weight:700;color:var(--text-3);margin-bottom:8px">执行</div>
+              <div class="fb-dim"><span class="fb-dim-tag">人</span> <span class="highlight">人群击穿</span></div>
+              <div class="fb-dim"><span class="fb-dim-tag">货</span> 竞争击穿</div>
+              <div class="fb-dim"><span class="fb-dim-tag">词</span> 一搜即现</div>
+              <div class="fb-dim"><span class="fb-dim-tag">内容</span> 营销IP矩阵</div>
+            </div>
+          </div>
+          <div class="fb-measures">
+            <span class="fb-ms">I-P转化率</span><span class="fb-ms">竞品曝光渗透率</span><span class="fb-ms">拦截率</span>
+          </div>
+        </div>
+        <div class="force-divider"></div>
+        <div class="force-block fb4">
+          <div class="fb-header">
+            <div class="fb-icon">攻防</div>
+            <div class="fb-title">攻防 - 拉新流转</div>
+            <div class="fb-metric">拉新 · I-P转化 · ROI</div>
+          </div>
+          <div class="fb-desc">竞争击穿紧跟竞对货品人群曝光，相似品跟投搜索卡位抢夺流量，竞争突围排他屏蔽竞品。</div>
+          <div class="fb-content" style="display:flex;gap:16px;align-items:stretch">
+            <div style="flex:1;text-align:center">
+              <div style="font-size:14px;font-weight:700;color:var(--text-3);margin-bottom:8px">诊断</div>
+              <div id="radar-攻防"></div>
+              <div style="font-size:12px;font-weight:600;color:var(--text-3);margin-top:4px">攻防缺失型</div>
+            </div>
+            <div style="flex:1">
+              <div style="font-size:14px;font-weight:700;color:var(--text-3);margin-bottom:8px">执行</div>
+              <div class="fb-dim"><span class="fb-dim-tag">人</span> 品牌特秀</div>
+              <div class="fb-dim"><span class="fb-dim-tag">货</span> <span class="highlight">竞争击穿</span></div>
+              <div class="fb-dim"><span class="fb-dim-tag">词</span> 相似品跟投·搜索卡位</div>
+              <div class="fb-dim"><span class="fb-dim-tag">内容</span> 超级短视频</div>
+            </div>
+          </div>
+          <div class="fb-measures">
+            <span class="fb-ms">新客成本</span><span class="fb-ms">品类渗透增速</span><span class="fb-ms">竞争胜率</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 分隔器：四势联动实现高效转化 -->
+      <div class="force-separator" style="padding:20px 0;text-align:center;position:relative;z-index:1">
+        <div style="font-size:16px;font-weight:700;color:var(--magenta);letter-spacing:.05em;margin-bottom:12px">四势联动实现高效转化</div>
+        <div style="display:flex;justify-content:center;align-items:center">
+          <div style="width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:16px solid var(--magenta)"></div>
+        </div>
+      </div>
+
+      <!-- 第三行：高效转化（全宽独立框） -->
+      <div class="force-block fb5">
+        <div class="fb-header">
+          <div class="fb-icon">高效转化</div>
+          <div class="fb-title">高效转化 - 策略兑现</div>
+          <div class="fb-metric">PPC · ROI</div>
+        </div>
+        <div class="fb-desc">心智资产兑现成交，最大化单位预算产出。全站流量转化，高效竞价与多目标优化。</div>
+        <div class="fb-content fb-content-horizontal">
+          <div class="fb-dim"><span class="fb-dim-tag">人</span> UD效果 · <span class="highlight">万相台无界·人群推广</span></div>
+          <div class="fb-dim" style="flex:1.5"><span class="fb-dim-tag">货</span> 货品全站推(<span class="highlight">AI三引擎·净成交出价</span>)</div>
+          <div class="fb-dim" style="flex:0.8"><span class="fb-dim-tag">词</span> <span class="highlight">万相台无界·关键词推广</span></div>
+          <div class="fb-dim" style="flex:0.8"><span class="fb-dim-tag">内容</span> <span class="highlight">万相台无界·内容营销</span></div>
+        </div>
+        <div class="fb-measures">
+          <span class="fb-ms">货品ROI</span><span class="fb-ms">关键词ROI</span><span class="fb-ms">内容营销ROI</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Section 03: Product Upgrades ============ -->
+<section id="upgrades">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">03 · PRODUCT UPGRADES</div>
+      <h2 class="sec-title">双11<span class="grad">产品能力升级</span></h2>
+      <p class="sec-desc">淘内品牌广告+淘外UD两大产品线核心升级点一览。</p>
+    </div>
+
+    <div class="card" style="padding:24px;margin-bottom:28px">
+      <div style="font-size:14px;font-weight:600;color:var(--blue-deep);margin-bottom:16px">双11产品升级总览</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+        <div style="text-align:center;padding:16px 12px;border-radius:12px;background:rgba(225,72,95,.04);border-top:3px solid var(--magenta)">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(225,72,95,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:16px;font-weight:700">NEW</div>
+          <div style="font-size:14px;font-weight:700;color:var(--magenta);margin-bottom:4px">新产品上线</div>
+          <div style="font-size:12px;color:var(--text-3);line-height:1.5">超级亮相 · UD品牌专属新产品</div>
+        </div>
+        <div style="text-align:center;padding:16px 12px;border-radius:12px;background:rgba(90,44,255,.04);border-top:3px solid var(--purple)">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(90,44,255,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:16px;font-weight:700">AI</div>
+          <div style="font-size:14px;font-weight:700;color:var(--purple);margin-bottom:4px">AI能力升级</div>
+          <div style="font-size:12px;color:var(--text-3);line-height:1.5">AIGC全域+AI洞察拉新+万相点睛+人群灵眸</div>
+        </div>
+        <div style="text-align:center;padding:16px 12px;border-radius:12px;background:rgba(31,58,195,.04);border-top:3px solid var(--blue-deep)">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(31,58,195,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-size:14px;font-weight:700">UP</div>
+          <div style="font-size:14px;font-weight:700;color:var(--blue-deep);margin-bottom:4px">产品能力升级</div>
+          <div style="font-size:12px;color:var(--text-3);line-height:1.5">淘内品牌广告+淘外UD核心升级</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ug-groups">
+      <div class="ug-group-title">新产品上线</div>
+      <div class="card ug-group">
+        <span class="ug-cat-badge out">淘外UD</span>
+        <div class="ug-item"><div class="name">超级亮相</div><div class="desc">低门槛高性价比曝光·TA100%精准·新客尝鲜优选，3万起投</div></div>
+        <span class="ug-tag new">NEW</span>
+      </div>
+
+      <div class="ug-group-title">AI能力升级</div>
+      <div class="ug-highlight ug-h1" style="padding:14px 18px;border-radius:12px;background:linear-gradient(135deg,rgba(90,44,255,.08),rgba(31,58,195,.06));border:1px solid rgba(90,44,255,.15);margin-bottom:8px">
+        <div style="font-size:14px;font-weight:700;margin-bottom:4px">✦ AIGC全域覆盖</div>
+        <div style="font-size:12px;color:var(--text-3);line-height:1.5">万相智投AIGC内容引擎贯穿所有产品线，素材秒级生产，直投UD/百灵/无界</div>
+      </div>
+      <div class="ug-highlight ug-h2" style="padding:14px 18px;border-radius:12px;background:linear-gradient(135deg,rgba(16,219,229,.08),rgba(31,58,195,.04));border:1px solid rgba(16,219,229,.2);margin-bottom:8px">
+        <div style="font-size:14px;font-weight:700;margin-bottom:4px">◎ AI洞察拉新Agent</div>
+        <div style="font-size:12px;color:var(--text-3);line-height:1.5">品牌特秀·人群击穿·赢搜通·ShowMAX——AI品牌洞察·快捷策略·完整提案</div>
+      </div>
+      <div class="card ug-group">
+        <span class="ug-cat-badge in">淘内</span>
+        <div class="ug-item"><div class="name">品牌特秀</div><div class="desc">投前<b>万相点睛</b>人群智选 · 投中模型护航 · 投后<b>人群灵眸</b>价值解读</div></div>
+        <span class="ug-tag ai">AI洞察拉新Agent</span>
+        <span class="ug-tag ai">AI双引擎</span>
+      </div>
+      <div class="card ug-group">
+        <span class="ug-cat-badge in">淘内</span>
+        <div class="ug-item"><div class="name">人群击穿</div><div class="desc"><b>万相点睛</b>AI人群双模式(精准拉新/效率最大化) · 全链AI升级：投前人群解读·投中模型护航·投后深度结案</div></div>
+        <span class="ug-tag ai">AI洞察拉新Agent</span>
+        <span class="ug-tag ai">AI双引擎</span>
+      </div>
+      <div class="card ug-group">
+        <span class="ug-cat-badge in">淘内</span>
+        <div class="ug-item"><div class="name">ShowMAX</div><div class="desc">四大场景（进店/加购/追击/入会）<b>确定性交付</b>，不达标赔付</div></div>
+        <span class="ug-tag ai">AI洞察拉新Agent</span>
+      </div>
+      <div class="card ug-group">
+        <span class="ug-cat-badge in">淘内</span>
+        <div class="ug-item"><div class="name">一搜即现</div><div class="desc">搜后人群实时拦截·分钟级展现·<b>AIT AI意图词包</b>·<b>万相点睛</b></div></div>
+      </div>
+      <div class="card ug-group">
+        <span class="ug-cat-badge out">淘外UD</span>
+        <div class="ug-item"><div class="name">超级全域通</div><div class="desc">万相点睛人群智导升级：四大人群×五大能力+新助推力</div></div>
+      </div>
+      <div class="card ug-group">
+        <span class="ug-cat-badge out">淘外UD</span>
+        <div class="ug-item"><div class="name">AI超级品牌</div><div class="desc">语脉+AI闪投+全域追投+评估体系 四件套</div></div>
+      </div>
+
+      <div class="ug-group-title">产品能力升级</div>
+      <div class="ug-sub-title">淘内品牌广告</div>
+      <div class="card ug-group">
+        <span class="ug-cat-badge in">淘内</span>
+        <div class="ug-item"><div class="name">赢搜通</div><div class="desc">全域搜索交付+品专词/定制SRP品牌"门面"，搜索爆发系数<b>+20%</b></div></div>
+        <span class="ug-tag ai">AI洞察拉新Agent</span>
+      </div>
+      <div class="card ug-group">
+        <span class="ug-cat-badge in">淘内</span>
+        <div class="ug-item"><div class="name">手淘开屏</div><div class="desc">Topshow 3s静态·100%TA保量·可一键点击入商详页·多场景全覆盖；Topbrand AI微动效</div></div>
+      </div>
+
+      <div class="ug-sub-title">淘外UD</div>
+      <div class="card ug-group">
+        <span class="ug-cat-badge out">淘外UD</span>
+        <div class="ug-item"><div class="name">家享智屏</div><div class="desc">OTT开机浓度↑+新增B站OTT联投</div></div>
+      </div>
+      <div class="card ug-group">
+        <span class="ug-cat-badge out">淘外UD</span>
+        <div class="ug-item"><div class="name">超信2.0</div><div class="desc">AI拓版+AI创意内置；中腰部媒体低门槛TA100%</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ Section 04: Must-Do ============ -->
+<section id="mustdo">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-eyebrow">04 · D11 MUST-DO</div>
+      <h2 class="sec-title">双11<span class="grad">必做清单</span></h2>
+      <p class="sec-desc">四条核心行动指南，帮助品牌在双11中最大化投放回报。</p>
+    </div>
+
+    <div class="mustdo-grid">
+      <div class="card md-card">
+        <div class="num">01</div>
+        <div class="title">前置投放，抢占早鸟杠杆</div>
+        <div class="desc">9/15前UD品牌返10%，9/20前Topshow/Topbrand下单返10%；100万AIGC高阶权益先到先得。蓄水期锁定稀缺资源 = 大促期间的购买权和返点双重收益。</div>
+      </div>
+      <div class="card md-card">
+        <div class="num">02</div>
+        <div class="title">用户关系资产构建竞争壁垒</div>
+        <div class="desc">扩大用户关系捕获，蓄水期UD外投+手淘开屏最大化D/E层人群沉淀；持续加深用户关系，ShowMAX追击+人群击穿推动P/I层焕活；保持用户关系新鲜度，全链路持续触达促转化。三步层层递进，避免人群断层。</div>
+      </div>
+      <div class="card md-card">
+        <div class="num">03</div>
+        <div class="title">多目标协同投资综合效能最大化</div>
+        <div class="desc">多场景种草渗透——UD+品专+赢搜通扩大品类赛道人群开口；泛精准流量承接——达摩盘数据沉淀，最大化点击转化；智能化成交放量——无界全站推收网，关键词+内容+人群场景组合实现高效转化。</div>
+      </div>
+      <div class="card md-card">
+        <div class="num">04</div>
+        <div class="title">用好AI双引擎：万相点睛+人群灵眸</div>
+        <div class="desc">AI万相点睛提供五大维度人群+竞争策略人群，AI人群灵眸三大智选目标灵活切换。两大AI能力是今年双11的核心竞争力。</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ Summary ============ -->
+<section class="summary-section" id="summary">
+  <div class="container">
+    <div class="slogan">高投高返，早投早返</div>
+    <div class="slogan-en">INVEST MORE, EARN MORE · START EARLY, WIN BIG</div>
+  </div>
+</section>
+
+<!-- ============ Footer ============ -->
+<footer class="footer">
+  <div class="tagline">让每一份经营都算数</div>
+  <div class="info">D11作战地图 · 美护清AI经营四势与策略直达指南 · 基于阿里妈妈双11营销一站式指南 · 2026.09</div>
+</footer>
+
+<script>
+// IntersectionObserver for fade-up animations（特性检测兜底）
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('fade-up');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('section, .card, .force-card, .journey-node, .kpi-item, .ug-group, .md-card, .policy-card, .ms-card, .growth-card, .agent-card').forEach(el => {
+    observer.observe(el);
+  });
+} else {
+  document.documentElement.classList.add('no-io');
+}
+
+// Active nav state on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 120;
+  let current = '';
+  sections.forEach(sec => {
+    if (scrollY >= sec.offsetTop) {
+      current = sec.id;
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+</script>
+<script>
+// 12维雷达图生成函数
+function generateRadar(containerId, opts) {
+  const labels = ['曝光量级','资产规模','全域配比','转化渗透','追投强度','心智份额','意图拦截','竞赢拉新','沟通频率','高质出价','过程调优','成本控制'];
+  const stepColors = ['rgba(37,99,168,.05)','rgba(154,79,158,.05)','rgba(46,139,111,.05)','rgba(176,122,31,.05)'];
+  const stepBorderColors = ['rgba(37,99,168,.2)','rgba(154,79,158,.2)','rgba(46,139,111,.2)','rgba(176,122,31,.2)'];
+  const stepNames = ['STEP1 关系捕获','STEP2 促活加深','STEP3 拉新流转','STEP4 高效转化'];
+  const stepLabelColors = ['#2563a8','#9a4f9e','#2e8b6f','#b07a1f'];
+  
+  const N = 12, SEC = 360/N, HALF = SEC/2, BLK = 360/4;
+  
+  // 预设：标准用大尺寸，小雷达用紧凑尺寸
+  const bigGeo = {vbW:440, vbH:440, CX:220, CY:220, R:120, LR:160};
+  const smallGeo = {vbW:400, vbH:400, CX:200, CY:200, R:100, LR:145};
+  const G = opts.isStandard ? bigGeo : smallGeo;
+  const {CX, CY, R, LR} = G;
+  
+  const data = opts.data || null;
+  const baseline = opts.baseline || 60;
+  const deficientDims = opts.deficientDims || [];
+  
+  const pt = (deg, r) => {
+    const a = deg * Math.PI / 180;
+    return [CX + r * Math.cos(a), CY + r * Math.sin(a)];
+  };
+  const aDeg = i => -90 + HALF + i * SEC;
+  const bDeg = q => -90 + q * BLK;
+  
+  function wrapLabel(str) {
+    str = String(str == null ? "" : str);
+    if (str.length <= 4) return [str];
+    const k = Math.ceil(str.length / 2);
+    return [str.slice(0, k), str.slice(k)];
+  }
+  
+  let svg = '<svg viewBox="0 0 ' + G.vbW + ' ' + G.vbH + '" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:' + (opts.maxWidth || '300px') + ';height:auto;display:block;margin:0 auto">';
+  
+  // STEP扇区背景
+  for (let q = 0; q < 4; q++) {
+    const bd1 = bDeg(q), bd2 = bDeg(q + 1);
+    const [x1, y1] = pt(bd1, R);
+    const [x2, y2] = pt(bd2, R);
+    const pathStr = 'M ' + CX + ' ' + CY + ' L ' + x1.toFixed(1) + ' ' + y1.toFixed(1) + ' A ' + R + ' ' + R + ' 0 0 1 ' + x2.toFixed(1) + ' ' + y2.toFixed(1) + ' Z';
+    svg += '<path d="' + pathStr + '" fill="' + stepColors[q] + '" stroke="' + stepBorderColors[q] + '" stroke-width="0.5"/>';
+  }
+  
+  // 刻度环
+  svg += '<circle cx="' + CX + '" cy="' + CY + '" r="' + R + '" fill="none" stroke="#dde2ea" stroke-width="1"/>';
+  for (let r of [R*0.4, R*0.7]) {
+    svg += '<circle cx="' + CX + '" cy="' + CY + '" r="' + r.toFixed(1) + '" fill="none" stroke="#e3e7ee" stroke-width="0.6"/>';
+  }
+  
+  // 指标轴
+  for (let i = 0; i < N; i++) {
+    const [x, y] = pt(aDeg(i), R);
+    svg += '<line x1="' + CX + '" y1="' + CY + '" x2="' + x.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="#c5cbd7" stroke-width="0.8" opacity="0.55"/>';
+  }
+  
+  // 基准线（60分红色虚线）
+  const baselineR = R * baseline / 100;
+  let baselinePts = [];
+  for (let i = 0; i < N; i++) {
+    const [x, y] = pt(aDeg(i), baselineR);
+    baselinePts.push(x.toFixed(1) + ',' + y.toFixed(1));
+  }
+  svg += '<polygon points="' + baselinePts.join(' ') + '" fill="none" stroke="#c0392b" stroke-width="1.8" stroke-dasharray="5 4" opacity="0.7"/>';
+  
+  // 数据多边形
+  if (data) {
+    let dataPts = [];
+    for (let i = 0; i < N; i++) {
+      const [x, y] = pt(aDeg(i), R * Math.max(0, Math.min(100, data[i] || 0)) / 100);
+      dataPts.push(x.toFixed(1) + ',' + y.toFixed(1));
+    }
+    const dataColor = opts.dataColor || '#2563a8';
+    svg += '<polygon points="' + dataPts.join(' ') + '" fill="' + dataColor + '" fill-opacity="0.18" stroke="' + dataColor + '" stroke-width="2.2" stroke-linejoin="round"/>';
+  }
+  
+  // STEP扇区标签（标准雷达才显示）
+  if (opts.isStandard) {
+    for (let q = 0; q < 4; q++) {
+      const bd1 = bDeg(q), bd2 = bDeg(q + 1);
+      const midDeg = (bd1 + bd2) / 2;
+      const [lx, ly] = pt(midDeg, R * 0.5);
+      svg += '<text x="' + lx.toFixed(1) + '" y="' + (ly + 3).toFixed(1) + '" text-anchor="middle" font-size="9" font-weight="600" fill="' + stepLabelColors[q] + '">' + stepNames[q] + '</text>';
+    }
+  }
+  
+  // 轴标签
+  const fAxis = opts.isStandard ? 12 : 12;
+  for (let i = 0; i < N; i++) {
+    const isDef = deficientDims.indexOf(i) >= 0;
+    // 小雷达：只显示缺失维度的标签
+    if (!opts.isStandard && !isDef) continue;
+    
+    const deg = aDeg(i);
+    const [lx, ly] = pt(deg, LR);
+    const cs = Math.cos(deg * Math.PI / 180);
+    const anchor = Math.abs(cs) >= 0.8 ? (cs > 0 ? 'start' : 'end') : 'middle';
+    const slines = wrapLabel(labels[i]);
+    const labelColor = isDef ? '#c0392b' : '#3b4457';
+    const labelWeight = isDef ? 700 : (opts.isStandard ? 700 : 400);
+    const fontSize = isDef ? fAxis + 1 : fAxis;
+    
+    const lh = slines.map(() => fontSize * 1.22);
+    const totalH = lh.reduce((a, b) => a + b, 0);
+    let y = ly - totalH / 2;
+    slines.forEach((t, k) => {
+      const by = y + lh[k] * 0.80;
+      svg += '<text x="' + lx.toFixed(1) + '" y="' + by.toFixed(1) + '" text-anchor="' + anchor + '" font-size="' + fontSize + '" font-weight="' + labelWeight + '" fill="' + labelColor + '">' + t + '</text>';
+      y += lh[k];
+    });
+  }
+  
+  svg += '</svg>';
+  
+  const container = document.getElementById(containerId);
+  if (container) container.innerHTML = svg;
+}
+
+// 标准雷达图（完整12维标签+STEP扇区）
+generateRadar('standardRadar', {
+  isStandard: true,
+  maxWidth: '480px'
+});
+
+// 捕获缺失型（维度0,1,2缺失）
+generateRadar('radar-捕获', {
+  data: [16.5, 55.3, 37.4, 62.3, 40, 62.1, 43.4, 61.4, 70.6, 54.1, 56.6, 50.2],
+  dataColor: '#2563a8',
+  deficientDims: [0, 1, 2],
+  maxWidth: '230px'
+});
+
+// 追击缺失型（维度3,4,5缺失）
+generateRadar('radar-追击', {
+  data: [67.2, 59, 50.4, 38, 33, 45, 70.5, 63.8, 60.5, 65.5, 64.2, 65.1],
+  dataColor: '#9a4f9e',
+  deficientDims: [3, 4, 5],
+  maxWidth: '230px'
+});
+
+// 拦截缺失型（维度6,7,8缺失）
+generateRadar('radar-拦截', {
+  data: [92.1, 79.2, 60.3, 100, 98.7, 86.5, 48, 38, 44, 50.3, 57.6, 66.5],
+  dataColor: '#2e8b6f',
+  deficientDims: [6, 7, 8],
+  maxWidth: '230px'
+});
+
+// 攻防缺失型（维度6,7,8缺失，不同模式）
+generateRadar('radar-攻防', {
+  data: [80.2, 73.4, 58.5, 76.4, 64.2, 71.4, 52, 41, 47, 61, 53, 49.6],
+  dataColor: '#b07a1f',
+  deficientDims: [6, 7, 8],
+  maxWidth: '230px'
+});
+</script>
+</body>
+</html>
